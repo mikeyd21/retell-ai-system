@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plumbing Receptionist - AI Voice Agent Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🔧</span>
+        <h1>Plumbing Receptionist</h1>
+      </div>
+      <div class="status-indicator" id="systemStatus">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking...</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Dashboard Stats -->
+      <section class="stats-section">
+        <div class="stat-card">
+          <h3>Today's Calls</h3>
+          <p class="stat-number" id="todayCalls">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Appointments Booked</h3>
+          <p class="stat-number" id="appointmentsBooked">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Calendar Status</h3>
+          <p class="stat-status" id="calendarStatus">Not Connected</p>
+        </div>
+      </section>
+
+      <!-- Quick Actions -->
+      <section class="actions-section">
+        <h2>Quick Actions</h2>
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="testCallBtn">
+            <span class="btn-icon">📞</span>
+            Start Test Call
+          </button>
+          <button class="btn btn-secondary" id="connectCalendarBtn">
+            <span class="btn-icon">📅</span>
+            Connect Google Calendar
+          </button>
+          <button class="btn btn-secondary" id="viewConfigBtn">
+            <span class="btn-icon">⚙️</span>
+            View Agent Config
+          </button>
+        </div>
+      </section>
+
+      <!-- Test Call Section -->
+      <section class="test-call-section" id="testCallSection" style="display: none;">
+        <h2>Test Voice Agent</h2>
+        <div class="test-call-container">
+          <div class="call-status" id="callStatus">
+            <div class="call-animation">
+              <div class="pulse-ring"></div>
+              <div class="pulse-core">📞</div>
+            </div>
+            <p id="callStatusText">Ready to start test call</p>
+          </div>
+          <div class="call-controls">
+            <button class="btn btn-success" id="startCallBtn">Start Call</button>
+            <button class="btn btn-danger" id="endCallBtn" disabled>End Call</button>
+          </div>
+          <div class="transcript-container">
+            <h3>Live Transcript</h3>
+            <div class="transcript" id="transcript">
+              <p class="transcript-placeholder">Transcript will appear here during the call...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Agent Configuration Display -->
+      <section class="config-section" id="configSection" style="display: none;">
+        <h2>Agent Configuration</h2>
+        <div class="config-container">
+          <pre id="agentConfigDisplay"></pre>
+        </div>
+      </section>
+
+      <!-- Manual Booking Form -->
+      <section class="booking-section">
+        <h2>Manual Appointment Booking</h2>
+        <form id="bookingForm" class="booking-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="customerName">Customer Name *</label>
+              <input type="text" id="customerName" name="customerName" required>
+            </div>
+            <div class="form-group">
+              <label for="customerPhone">Phone Number *</label>
+              <input type="tel" id="customerPhone" name="customerPhone" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="customerEmail">Email (Optional)</label>
+              <input type="email" id="customerEmail" name="customerEmail">
+            </div>
+            <div class="form-group">
+              <label for="serviceType">Service Type *</label>
+              <select id="serviceType" name="serviceType" required>
+                <option value="">Select a service...</option>
+                <option value="emergency">Emergency Plumbing</option>
+                <option value="drain">Drain Cleaning</option>
+                <option value="waterHeater">Water Heater Services</option>
+                <option value="leak">Leak Detection & Repair</option>
+                <option value="installation">Fixture Installation</option>
+                <option value="general">General Plumbing</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">Service Address *</label>
+            <input type="text" id="address" name="address" required>
+          </div>
+          <div class="form-group">
+            <label for="description">Issue Description</label>
+            <textarea id="description" name="description" rows="3"></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="appointmentDate">Appointment Date *</label>
+              <input type="date" id="appointmentDate" name="appointmentDate" required>
+            </div>
+            <div class="form-group">
+              <label for="appointmentTime">Appointment Time *</label>
+              <input type="time" id="appointmentTime" name="appointmentTime" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Book Appointment</button>
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Powered by Retell AI | Plumbing Receptionist v1.0</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notifications -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
